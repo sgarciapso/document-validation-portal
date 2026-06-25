@@ -1,7 +1,26 @@
+function obtenerMensajeEstado(estado) {
+  switch (estado) {
+    case "Vigente":
+      return "Este documento se encuentra vigente según nuestros registros.";
+
+    case "Revocado":
+      return "Este documento fue revocado y no debe ser utilizado.";
+
+    case "Vencido":
+      return "Este documento superó su fecha de vigencia y ya no debe ser utilizado.";
+
+    case "Reemplazado":
+      return "Este documento fue reemplazado por una versión posterior.";
+
+    default:
+      return "El estado de este documento no pudo ser determinado.";
+  }
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    let codigo = url.pathname.replace("/", "").trim();
+    const codigo = url.pathname.replace("/", "").trim();
 
     if (!codigo) {
       return env.ASSETS.fetch(new Request(new URL("/index.html", url)));
@@ -11,10 +30,31 @@ export default {
     const respuesta = await env.ASSETS.fetch(new Request(archivo));
 
     if (respuesta.status === 404) {
-      return new Response("Documento no encontrado", { status: 404 });
+      return new Response(`
+        <!DOCTYPE html>
+        <html lang="es">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Documento no encontrado</title>
+          <link rel="stylesheet" href="/styles.css">
+        </head>
+        <body>
+          <main class="card">
+            <h1>Validación de Documento</h1>
+            <h2>Documento no encontrado</h2>
+            <p>El código <strong>${codigo}</strong> no existe en nuestros registros públicos de validación.</p>
+          </main>
+        </body>
+        </html>
+      `, {
+        status: 404,
+        headers: { "Content-Type": "text/html; charset=UTF-8" }
+      });
     }
 
     const data = await respuesta.json();
+    const mensajeEstado = obtenerMensajeEstado(data.estado);
 
     return new Response(`
       <!DOCTYPE html>
@@ -28,13 +68,20 @@ export default {
       <body>
         <main class="card">
           <h1>Validación de Documento</h1>
-          <p class="estado">${data.estado}</p>
+
+          <h2>${data.estado}</h2>
+          <p>${mensajeEstado}</p>
+
+          <hr>
+
           <p><strong>Código:</strong> ${data.codigo}</p>
           <p><strong>Razón social:</strong> ${data.razonSocial}</p>
           <p><strong>RUT:</strong> ${data.rut}</p>
           <p><strong>Tipo:</strong> ${data.tipo}</p>
           <p><strong>Emisión:</strong> ${data.fechaEmision}</p>
           <p><strong>Vencimiento:</strong> ${data.fechaVencimiento}</p>
+          <p><strong>Versión:</strong> ${data.version}</p>
+          <p><strong>Firmado electrónicamente:</strong> ${data.firmadoElectronicamente ? "Sí" : "No"}</p>
         </main>
       </body>
       </html>
