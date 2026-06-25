@@ -1,4 +1,5 @@
 {
+  "$schema": 1,
   "codigo": "POD-2026-000001",
   "tipoDocumento": "Poder",
   "estado": "Vigente",
@@ -17,5 +18,11 @@
     "emitidoPor": "Certificador de Prueba",
     "fechaFirma": "2026-06-24",
     "firmante": "Nombre Firmante"
+  },
+  "control": {
+    "creadoPor": "Sebastian Garcia",
+    "fechaCreacion": "2026-06-24",
+    "ultimaActualizacion": "2026-06-24",
+    "origen": "Operations Hub"
   }
 }

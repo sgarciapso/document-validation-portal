@@ -1,11 +1,28 @@
 {
-  "codigo": "POD-2026-000003",
-  "tipo": "Poder",
-  "razonSocial": "Empresa de Prueba SpA",
-  "rut": "76.000.000-0",
+  "$schema": 1,
+  "codigo": "POD-2026-000001",
+  "tipoDocumento": "Poder",
   "estado": "Vencido",
-  "fechaEmision": "2026-06-24",
-  "fechaVencimiento": "2027-06-24",
-  "version": 1,
-  "firmadoElectronicamente": true
+  "empresa": {
+    "razonSocial": "Empresa de Prueba SpA",
+    "rut": "76.000.000-0"
+  },
+  "vigencia": {
+    "emision": "2026-06-24",
+    "vencimiento": "2027-06-24",
+    "version": 1
+  },
+  "firma": {
+    "firmado": true,
+    "tipoFirma": "Firma Electrónica Avanzada Clase 3",
+    "emitidoPor": "Certificador de Prueba",
+    "fechaFirma": "2026-06-24",
+    "firmante": "Nombre Firmante"
+  },
+  "control": {
+    "creadoPor": "Sebastian Garcia",
+    "fechaCreacion": "2026-06-24",
+    "ultimaActualizacion": "2026-06-24",
+    "origen": "Operations Hub"
+  }
 }
