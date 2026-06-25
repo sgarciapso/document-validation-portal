@@ -102,11 +102,11 @@ export default {
 
           <br></br>
                    
-          <p><strong>Firmado electrónicamente:</strong> ${data.firmado ? "Sí" : "No"}</p>
-          <p><strong>Tipo de firma:</strong> ${data.tipoFirma}</p>
-          <p><strong>Emitido por:</strong> ${data.emitidoPor}</p>
-          <p><strong>Fecha firma:</strong> ${data.fechaFirma}</p>
-          <p><strong>Firmado por:</strong> ${data.firmante}</p>
+          <p><strong>Firmado electrónicamente:</strong> ${data.firma.firmado ? "Sí" : "No"}</p>
+          <p><strong>Tipo de firma:</strong> ${data.firma.tipoFirma}</p>
+          <p><strong>Emitido por:</strong> ${data.firma.emitidoPor}</p>
+          <p><strong>Fecha firma:</strong> ${data.firma.fechaFirma}</p>
+          <p><strong>Firmado por:</strong> ${data.firma.firmante}</p>
           
         </main>
       </body>
