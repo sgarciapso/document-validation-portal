@@ -93,13 +93,21 @@ export default {
           <hr>
 
           <p><strong>Código:</strong> ${data.codigo}</p>
-          <p><strong>Razón social:</strong> ${data.razonSocial}</p>
-          <p><strong>RUT:</strong> ${data.rut}</p>
-          <p><strong>Tipo:</strong> ${data.tipo}</p>
-          <p><strong>Emisión:</strong> ${data.fechaEmision}</p>
-          <p><strong>Vencimiento:</strong> ${data.fechaVencimiento}</p>
-          <p><strong>Versión:</strong> ${data.version}</p>
-          <p><strong>Firmado electrónicamente:</strong> ${data.firmadoElectronicamente ? "Sí" : "No"}</p>
+          <p><strong>Razón social:</strong> ${data.empresa.razonSocial}</p>
+          <p><strong>RUT:</strong> ${data.empresa.rut}</p>
+          <p><strong>Tipo:</strong> ${data.tipoDocumento}</p>
+          <p><strong>Emisión:</strong> ${data.vigencia.emision}</p>
+          <p><strong>Vencimiento:</strong> ${data.vigencia.vencimiento}</p>
+          <p><strong>Versión:</strong> ${data.vigencia.version}</p>
+
+          <br></br>
+                   
+          <p><strong>Firmado electrónicamente:</strong> ${data.firmado ? "Sí" : "No"}</p>
+          <p><strong>Tipo de firma:</strong> ${data.tipoFirma}</p>
+          <p><strong>Emitido por:</strong> ${data.emitidoPor}</p>
+          <p><strong>Fecha firma:</strong> ${data.fechaFirma}</p>
+          <p><strong>Firmado por:</strong> ${data.firmante}</p>
+          
         </main>
       </body>
       </html>
