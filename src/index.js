@@ -17,6 +17,18 @@ function obtenerMensajeEstado(estado) {
   }
 }
 
+function obtenerCarpetaPorCodigo(codigo) {
+  if (codigo.startsWith("POD-")) {
+    return "poderes";
+  }
+
+  if (codigo.startsWith("ADO-")) {
+    return "autorizaciones_domicilio";
+  }
+
+  return null;
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -26,7 +38,13 @@ export default {
       return env.ASSETS.fetch(new Request(new URL("/index.html", url)));
     }
 
-    const archivo = new URL(`/data/${codigo}.json`, url);
+    const carpeta = obtenerCarpetaPorCodigo(codigo);
+    
+    if (!carpeta) {
+      return new Response("Tipo de documento no reconocido", { status: 400 });
+    }
+
+    const archivo = new URL(`/data/${carpeta}/${codigo}.json`, url);
     const respuesta = await env.ASSETS.fetch(new Request(archivo));
 
     if (respuesta.status === 404) {
