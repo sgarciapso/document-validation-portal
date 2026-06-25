@@ -1,0 +1,11 @@
+{
+  "codigo": "POD-2026-000001",
+  "tipo": "Poder",
+  "razonSocial": "Empresa de Prueba SpA",
+  "rut": "76.000.000-0",
+  "estado": "Reemplazado",
+  "fechaEmision": "2026-06-24",
+  "fechaVencimiento": "2027-06-24",
+  "version": 1,
+  "firmadoElectronicamente": true
+}
